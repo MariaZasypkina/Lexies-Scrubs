@@ -12,7 +12,7 @@ export default function Header() {
     <header className="sticky top-0 z-20 border-b border-[color:var(--line)] bg-[#fffdfb]/92 backdrop-blur">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-6 py-3">
         <Link href="/" className="la-title text-lg font-semibold tracking-[0.02em] text-[#b15f79] transition-colors hover:text-[#9a5068]" onClick={closeMenu}>
-          Lexi&apos;s Anatomy
+          Lexies Scrubs
         </Link>
 
         <button

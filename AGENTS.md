@@ -1,4 +1,4 @@
-# AGENTS.md — Lexi's Anatomy
+# AGENTS.md — Lexies Scrubs
 
 This file provides context for AI agents (GitHub Copilot, Copilot Workspace, etc.) working on this project.
 
@@ -6,7 +6,7 @@ This file provides context for AI agents (GitHub Copilot, Copilot Workspace, etc
 
 ## Project Overview
 
-**Lexi's Anatomy** is a public-facing English-language biology and medicine blog built by Lexi, a 10th-grade student who wants to become a doctor. The site works in two ways simultaneously: as a polished public science blog and as a student portfolio for college applications.
+**Lexies Scrubs** is a public-facing English-language biology and medicine blog built by Lexi, a 10th-grade student who wants to become a doctor. The site works in two ways simultaneously: as a polished public science blog and as a student portfolio for college applications.
 
 - Mission: discover, share, and explain surprising biology and medicine facts for teens
 - Tone: curious, smart, accessible, teen-friendly — never textbook, never clickbait

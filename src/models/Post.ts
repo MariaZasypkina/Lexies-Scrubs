@@ -58,7 +58,7 @@ export function generateExcerpt(lead: string, maxLength: number = 160): string {
 }
 
 export function generateSeoTitle(title: string): string {
-  return `${title} | Lexi's Anatomy`;
+  return `${title} | Lexies Scrubs`;
 }
 
 export function generateMetaDescription(lead: string): string {

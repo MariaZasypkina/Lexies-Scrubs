@@ -1,4 +1,4 @@
-# Lexi's Anatomy
+# Lexies Scrubs — README
 
 A fullstack Next.js blog for science facts with admin publishing capabilities.
 
@@ -126,8 +126,8 @@ All fields with * are required.
 
 ## Support
 
-For issues or questions about the Lexi's Anatomy project, refer to the technical instructions or contact the development team.
+For issues or questions about the Lexies Scrubs project, refer to the technical instructions or contact the development team.
 
 ---
 
-**Lexi's Anatomy** — Where surprising facts turn into clear explanations.
+**Lexies Scrubs** — Where surprising facts turn into clear explanations.

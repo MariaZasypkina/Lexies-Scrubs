@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Lexi's Anatomy | Teen-Friendly Biology & Medicine Facts",
+  title: "Lexies Scrubs | Curious Facts from Real Science",
   description: "A curious, teen-friendly biology and medicine blog where surprising facts turn into clear explanations.",
 };
 

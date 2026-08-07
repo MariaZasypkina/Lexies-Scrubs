@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About Lexi | Lexi\'s Anatomy',
-  description: 'Meet the student behind Lexi\'s Anatomy, a future doctor exploring biology and medicine.',
+  title: 'About Lexi | Lexies Scrubs',
+  description: 'Meet the student behind Lexies Scrubs, a future doctor exploring biology and medicine.',
 };
 
 export default function AboutLexiPage() {
@@ -11,14 +11,14 @@ export default function AboutLexiPage() {
       <div className="la-hero py-12 md:py-16">
         <div className="max-w-3xl mx-auto px-6">
           <h1 className="la-title mb-4 text-4xl font-bold md:text-5xl">About Lexi</h1>
-          <p className="la-subtitle text-lg">Meet the student behind Lexi&apos;s Anatomy.</p>
+          <p className="la-subtitle text-lg">Meet the student behind Lexies Scrubs.</p>
         </div>
       </div>
 
       <div className="max-w-3xl mx-auto px-6 py-12 md:py-16">
         <div className="la-heading-stack prose prose-lg max-w-none">
           <p className="mb-6 text-lg leading-relaxed text-[#3f5369]">
-            Lexi is a student who wants to become a doctor and loves discovering strange, memorable facts about biology and medicine. Lexi&apos;s Anatomy began as a way to turn that curiosity into something shareable: a website where science feels welcoming, visual, and easier to understand.
+            Lexi is a student who wants to become a doctor and loves discovering strange, memorable facts about biology and medicine. Lexies Scrubs began as a way to turn that curiosity into something shareable: a website where science feels welcoming, visual, and easier to understand.
           </p>
 
           <p className="mb-6 leading-relaxed text-[#3f5369]">
