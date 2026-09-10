@@ -1,4 +1,9 @@
-import { ObjectId } from 'mongodb';
+export type FactBadgeType = 'myth' | 'truth';
+
+export interface FactBadge {
+  type: FactBadgeType;
+  statement: string;
+}
 
 export interface GlossaryItem {
   term: string;
@@ -24,17 +29,20 @@ export interface MythOrTruthEntry {
 }
 
 export interface Post {
-  _id?: ObjectId;
+  _id?: string;
+  id?: string;
   title: string;
   slug: string;
   lead: string;
-  mainExplanation: string;
-  mythOrTruth: MythOrTruth;
+  content?: string;
+  factBadge?: FactBadge;
+  mainExplanation?: string;
+  whyThisMatters?: string;
+  mythOrTruth?: MythOrTruth;
   mythOrTruthChoice?: 'Myth' | 'Truth';
   mythOrTruthExplanation?: string;
-  glossary: GlossaryItem[];
-  whyThisMatters: string;
-  keyTakeaways: string[];
+  glossary?: GlossaryItem[];
+  keyTakeaways?: string[];
   sources: SourceItem[];
   coverImageUrl: string;
   coverImageAlt: string;
@@ -45,11 +53,18 @@ export interface Post {
   updatedAt: Date;
 }
 
-export function generateSlug(title: string): string {
-  return title
+export function normalizeSlug(input: string): string {
+  return input
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/[\s_]+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+export function generateSlug(title: string): string {
+  return normalizeSlug(title);
 }
 
 export function generateExcerpt(lead: string, maxLength: number = 160): string {
@@ -58,7 +73,7 @@ export function generateExcerpt(lead: string, maxLength: number = 160): string {
 }
 
 export function generateSeoTitle(title: string): string {
-  return `${title} | Lexies Scrubs`;
+  return `${title.trim()} | Lexies Scrubs`;
 }
 
 export function generateMetaDescription(lead: string): string {
@@ -68,8 +83,12 @@ export function generateMetaDescription(lead: string): string {
 
 export function getMythOrTruthEntriesFromPosts(posts: Post[]): MythOrTruthEntry[] {
   return posts.reduce<MythOrTruthEntry[]>((entries, post) => {
-      const choice = post.mythOrTruthChoice ?? post.mythOrTruth?.label;
-      const explanation = post.mythOrTruthExplanation ?? post.mythOrTruth?.text;
+      const choice = post.factBadge
+        ? (post.factBadge.type === 'myth' ? 'Myth' : 'Truth')
+        : (post.mythOrTruthChoice ?? post.mythOrTruth?.label);
+      const explanation = post.factBadge
+        ? post.factBadge.statement
+        : (post.mythOrTruthExplanation ?? post.mythOrTruth?.text);
 
       if (!choice || !explanation || !post.slug || !post.title) {
         return entries;

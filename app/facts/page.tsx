@@ -11,6 +11,11 @@ interface Post {
   publishedAt: string;
   coverImageUrl?: string;
   coverImageAlt?: string;
+  mythOrTruth?: {
+    label: 'Myth' | 'Truth';
+    text: string;
+  };
+  mythOrTruthChoice?: 'Myth' | 'Truth';
 }
 
 export default function FactsPage() {
@@ -82,6 +87,13 @@ export default function FactsPage() {
                       </div>
                     )}
                     <div className={post.coverImageUrl ? 'md:col-span-2' : 'md:col-span-3'}>
+                      {(post.mythOrTruth?.label === 'Myth' || post.mythOrTruthChoice === 'Myth') && (
+                        <div className="mb-2">
+                          <span className="la-badge inline-block bg-[#f8e6ee] text-[#a5546f] text-xs font-semibold px-2.5 py-0.5 rounded-full">
+                            Myth
+                          </span>
+                        </div>
+                      )}
                       <h2 className="la-title la-section-title mb-2 text-2xl font-bold">{post.title}</h2>
                       <p className="la-subtitle mb-4">{post.excerpt}</p>
                       <time className="text-sm text-[#6d7f91]">

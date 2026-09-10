@@ -1,51 +1,46 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { generateExcerpt, generateMetaDescription, generateSeoTitle, generateSlug } from '@/models/Post';
+import { generateSeoTitle, normalizeSlug } from '@/models/Post';
+
+type FactBadgeType = 'none' | 'myth' | 'truth';
+
+type Source = {
+  label: string;
+  url: string;
+};
 
 type FormState = {
   title: string;
   slug: string;
+  isSlugTouched: boolean;
   lead: string;
-  mainExplanation: string;
-  mythOrTruthLabel: 'Myth' | 'Truth';
-  mythOrTruthText: string;
-  glossaryTerm: string;
-  glossaryDefinition: string;
-  whyThisMatters: string;
-  takeaway1: string;
-  takeaway2: string;
-  takeaway3: string;
-  sources: Array<{ label: string; url: string }>;
+  content: string;
+  factBadgeType: FactBadgeType;
+  badgeStatement: string;
+  sources: Source[];
   coverImageUrl: string;
   coverImageAlt: string;
   seoTitle: string;
   metaDescription: string;
   excerpt: string;
-  publishedAt: string;
 };
 
 const emptyForm: FormState = {
   title: '',
   slug: '',
+  isSlugTouched: false,
   lead: '',
-  mainExplanation: '',
-  mythOrTruthLabel: 'Myth',
-  mythOrTruthText: '',
-  glossaryTerm: '',
-  glossaryDefinition: '',
-  whyThisMatters: '',
-  takeaway1: '',
-  takeaway2: '',
-  takeaway3: '',
+  content: '',
+  factBadgeType: 'none',
+  badgeStatement: '',
   sources: [{ label: '', url: '' }],
   coverImageUrl: '',
   coverImageAlt: '',
   seoTitle: '',
   metaDescription: '',
   excerpt: '',
-  publishedAt: new Date().toISOString().slice(0, 10),
 };
 
 export default function EditPostPage() {
@@ -58,11 +53,6 @@ export default function EditPostPage() {
   const [error, setError] = useState('');
   const [form, setForm] = useState<FormState>(emptyForm);
 
-  const computedSlug = useMemo(() => generateSlug(form.title || ''), [form.title]);
-  const computedSeo = useMemo(() => generateSeoTitle(form.title || ''), [form.title]);
-  const computedMeta = useMemo(() => generateMetaDescription(form.lead || '').slice(0, 160), [form.lead]);
-  const computedExcerpt = useMemo(() => generateExcerpt(form.lead || ''), [form.lead]);
-
   useEffect(() => {
     async function loadPost() {
       try {
@@ -72,26 +62,41 @@ export default function EditPostPage() {
         }
 
         const post = await response.json();
+
+        const legacyContent = [post.mainExplanation, post.whyThisMatters]
+          .filter(Boolean)
+          .join('\n\n');
+
+        const content = post.content ?? legacyContent;
+
+        const legacyFactBadge =
+          post.factBadge ??
+          (post.mythOrTruth?.label === 'Myth' && post.mythOrTruth?.text
+            ? {
+                type: 'myth' as const,
+                statement: post.mythOrTruth.text,
+              }
+            : post.mythOrTruth?.label === 'Truth' && post.mythOrTruth?.text
+              ? {
+                  type: 'truth' as const,
+                  statement: post.mythOrTruth.text,
+                }
+              : undefined);
+
         setForm({
           title: post.title || '',
           slug: post.slug || '',
+          isSlugTouched: Boolean(post.slug),
           lead: post.lead || '',
-          mainExplanation: post.mainExplanation || '',
-          mythOrTruthLabel: post.mythOrTruth?.label || 'Myth',
-          mythOrTruthText: post.mythOrTruth?.text || '',
-          glossaryTerm: post.glossary?.[0]?.term || '',
-          glossaryDefinition: post.glossary?.[0]?.definition || '',
-          whyThisMatters: post.whyThisMatters || '',
-          takeaway1: post.keyTakeaways?.[0] || '',
-          takeaway2: post.keyTakeaways?.[1] || '',
-          takeaway3: post.keyTakeaways?.[2] || '',
+          content: content || '',
+          factBadgeType: legacyFactBadge?.type ?? 'none',
+          badgeStatement: legacyFactBadge?.statement ?? '',
           sources: Array.isArray(post.sources) && post.sources.length > 0 ? post.sources : [{ label: '', url: '' }],
           coverImageUrl: post.coverImageUrl || '',
           coverImageAlt: post.coverImageAlt || '',
           seoTitle: post.seoTitle || '',
           metaDescription: post.metaDescription || '',
           excerpt: post.excerpt || '',
-          publishedAt: post.publishedAt ? new Date(post.publishedAt).toISOString().slice(0, 10) : new Date().toISOString().slice(0, 10),
         });
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load post');
@@ -107,6 +112,22 @@ export default function EditPostPage() {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
 
+  function handleTitleChange(value: string) {
+    setForm((prev) => ({
+      ...prev,
+      title: value,
+      slug: prev.isSlugTouched ? prev.slug : normalizeSlug(value),
+    }));
+  }
+
+  function handleSlugChange(value: string) {
+    setForm((prev) => ({
+      ...prev,
+      slug: normalizeSlug(value),
+      isSlugTouched: true,
+    }));
+  }
+
   function setSource(index: number, key: 'label' | 'url', value: string) {
     setForm((prev) => {
       const next = [...prev.sources];
@@ -116,36 +137,107 @@ export default function EditPostPage() {
   }
 
   function addSource() {
-    setForm((prev) => ({ ...prev, sources: [...prev.sources, { label: '', url: '' }] }));
+    setForm((prev) => ({
+      ...prev,
+      sources: [...prev.sources, { label: '', url: '' }],
+    }));
+  }
+
+  function removeSource(index: number) {
+    setForm((prev) => ({
+      ...prev,
+      sources: prev.sources.filter((_, i) => i !== index),
+    }));
   }
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSaving(true);
     setError('');
 
-    const payload = {
-      title: form.title,
-      slug: form.slug || computedSlug,
-      lead: form.lead,
-      mainExplanation: form.mainExplanation,
-      mythOrTruthChoice: form.mythOrTruthLabel,
-      mythOrTruthExplanation: form.mythOrTruthText,
-      mythOrTruth: {
-        label: form.mythOrTruthLabel,
-        text: form.mythOrTruthText,
-      },
-      glossary: [{ term: form.glossaryTerm, definition: form.glossaryDefinition }],
-      whyThisMatters: form.whyThisMatters,
-      keyTakeaways: [form.takeaway1, form.takeaway2, form.takeaway3],
-      sources: form.sources,
-      coverImageUrl: form.coverImageUrl,
-      coverImageAlt: form.coverImageAlt,
-      seoTitle: form.seoTitle || computedSeo,
-      metaDescription: (form.metaDescription || computedMeta).slice(0, 160),
-      excerpt: form.excerpt || computedExcerpt,
-      publishedAt: form.publishedAt,
+    const title = form.title.trim();
+    const slug = normalizeSlug(form.slug || title);
+    const lead = form.lead.trim();
+    const content = form.content.trim();
+    const coverImageUrl = form.coverImageUrl.trim();
+    const coverImageAlt = form.coverImageAlt.trim();
+
+    if (!title) {
+      setError('Title is required.');
+      return;
+    }
+    if (!slug) {
+      setError('Slug is required.');
+      return;
+    }
+    if (!lead) {
+      setError('The Question That Started It is required.');
+      return;
+    }
+    if (!content) {
+      setError('Article Content is required.');
+      return;
+    }
+
+    if (form.factBadgeType !== 'none') {
+      if (!form.badgeStatement.trim()) {
+        setError('Badge statement is required when a Fact Badge is selected.');
+        return;
+      }
+    }
+
+    if (!form.sources || form.sources.length < 1) {
+      setError('At least one source is required.');
+      return;
+    }
+
+    for (const source of form.sources) {
+      if (!source.label.trim()) {
+        setError('Source label cannot be blank.');
+        return;
+      }
+      if (!source.url.trim()) {
+        setError('Source URL cannot be blank.');
+        return;
+      }
+      if (!/^https?:\/\//i.test(source.url.trim())) {
+        setError('Source URL must begin with http:// or https://.');
+        return;
+      }
+    }
+
+    if (!coverImageUrl) {
+      setError('Cover Image URL is required.');
+      return;
+    }
+    if (!coverImageAlt) {
+      setError('Cover Image Alt Text is required.');
+      return;
+    }
+
+    setSaving(true);
+
+    const payload: Record<string, unknown> = {
+      title,
+      slug,
+      lead,
+      content,
+      sources: form.sources.map((s) => ({
+        label: s.label.trim(),
+        url: s.url.trim(),
+      })),
+      coverImageUrl,
+      coverImageAlt,
+      seoTitle: form.seoTitle.trim() || generateSeoTitle(title),
+      metaDescription: form.metaDescription.trim() || lead,
+      excerpt: form.excerpt.trim() || lead,
     };
+
+    if (form.factBadgeType === 'myth' || form.factBadgeType === 'truth') {
+      payload.factBadge = {
+        type: form.factBadgeType,
+        statement: form.badgeStatement.trim(),
+      };
+    }
 
     const response = await fetch(`/api/posts/${id}`, {
       method: 'PUT',
@@ -168,122 +260,289 @@ export default function EditPostPage() {
     return <div className="mx-auto max-w-4xl px-6 py-10 text-slate-600">Loading...</div>;
   }
 
+  const computedSeoTitle = form.title.trim() ? generateSeoTitle(form.title) : 'Title | Lexies Scrubs';
+
   return (
     <div className="mx-auto w-full max-w-4xl px-6 py-10">
       <h1 className="mb-6 text-3xl font-bold text-slate-900">Edit Post</h1>
       <form onSubmit={onSubmit} className="space-y-6 rounded-xl border border-slate-200 bg-white p-6">
-        <div className="grid gap-4 md:grid-cols-2">
-          <label className="text-sm font-semibold text-slate-700">Title
-            <input className="mt-1 w-full rounded border border-slate-300 px-3 py-2" value={form.title} onChange={(e) => setField('title', e.target.value)} required />
+        {/* 1. Title */}
+        <div>
+          <label className="block text-sm font-semibold text-slate-800">
+            Title <span className="text-red-500">*</span>
           </label>
-          <label className="text-sm font-semibold text-slate-700">Slug
-            <input className="mt-1 w-full rounded border border-slate-300 px-3 py-2" value={form.slug || computedSlug} onChange={(e) => setField('slug', e.target.value)} />
-          </label>
+          <input
+            type="text"
+            className="mt-1 w-full rounded border border-slate-300 px-3 py-2 text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500"
+            value={form.title}
+            onChange={(e) => handleTitleChange(e.target.value)}
+            required
+          />
         </div>
 
-        <label className="block text-sm font-semibold text-slate-700">Lead
-          <textarea className="mt-1 w-full rounded border border-slate-300 px-3 py-2" rows={3} value={form.lead} onChange={(e) => setField('lead', e.target.value)} required />
-        </label>
-
-        <label className="block text-sm font-semibold text-slate-700">Main Explanation
-          <textarea className="mt-1 w-full rounded border border-slate-300 px-3 py-2" rows={6} value={form.mainExplanation} onChange={(e) => setField('mainExplanation', e.target.value)} required />
-        </label>
-
-        <div className="grid gap-4 md:grid-cols-2">
-          <label className="text-sm font-semibold text-slate-700">Myth or Truth Label
-            <select className="mt-1 w-full rounded border border-slate-300 px-3 py-2" value={form.mythOrTruthLabel} onChange={(e) => setField('mythOrTruthLabel', e.target.value as 'Myth' | 'Truth')}>
-              <option value="Myth">Myth</option>
-              <option value="Truth">Truth</option>
-            </select>
+        {/* 2. Slug */}
+        <div>
+          <label className="block text-sm font-semibold text-slate-800">
+            Slug <span className="text-red-500">*</span>
           </label>
-          <label className="text-sm font-semibold text-slate-700">Myth or Truth Text
-            <textarea className="mt-1 w-full rounded border border-slate-300 px-3 py-2" rows={3} value={form.mythOrTruthText} onChange={(e) => setField('mythOrTruthText', e.target.value)} required />
-          </label>
+          <input
+            type="text"
+            className="mt-1 w-full rounded border border-slate-300 px-3 py-2 text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500"
+            value={form.slug}
+            onChange={(e) => handleSlugChange(e.target.value)}
+            required
+          />
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          <label className="text-sm font-semibold text-slate-700">Glossary Term
-            <input className="mt-1 w-full rounded border border-slate-300 px-3 py-2" value={form.glossaryTerm} onChange={(e) => setField('glossaryTerm', e.target.value)} required />
+        {/* 3. The Question That Started It */}
+        <div>
+          <label className="block text-sm font-semibold text-slate-800">
+            The Question That Started It <span className="text-red-500">*</span>
           </label>
-          <label className="text-sm font-semibold text-slate-700">Glossary Definition
-            <input className="mt-1 w-full rounded border border-slate-300 px-3 py-2" value={form.glossaryDefinition} onChange={(e) => setField('glossaryDefinition', e.target.value)} required />
-          </label>
+          <p className="mt-0.5 text-xs text-slate-500">
+            What made you curious about this topic? Write a short question or thought that inspired the post.
+          </p>
+          <textarea
+            rows={3}
+            className="mt-1.5 w-full rounded border border-slate-300 px-3 py-2 text-slate-900 placeholder-slate-400 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500"
+            value={form.lead}
+            onChange={(e) => setField('lead', e.target.value)}
+            placeholder="If the heart pumps blood to the whole body, why isn’t it exactly in the middle of the chest?"
+            required
+          />
         </div>
 
-        <label className="block text-sm font-semibold text-slate-700">Why This Matters
-          <textarea className="mt-1 w-full rounded border border-slate-300 px-3 py-2" rows={4} value={form.whyThisMatters} onChange={(e) => setField('whyThisMatters', e.target.value)} required />
-        </label>
-
-        <div className="grid gap-4 md:grid-cols-3">
-          <label className="text-sm font-semibold text-slate-700">Takeaway 1
-            <input className="mt-1 w-full rounded border border-slate-300 px-3 py-2" value={form.takeaway1} onChange={(e) => setField('takeaway1', e.target.value)} required />
+        {/* 4. Article Content */}
+        <div>
+          <label className="block text-sm font-semibold text-slate-800">
+            Article Content <span className="text-red-500">*</span>
           </label>
-          <label className="text-sm font-semibold text-slate-700">Takeaway 2
-            <input className="mt-1 w-full rounded border border-slate-300 px-3 py-2" value={form.takeaway2} onChange={(e) => setField('takeaway2', e.target.value)} required />
-          </label>
-          <label className="text-sm font-semibold text-slate-700">Takeaway 3
-            <input className="mt-1 w-full rounded border border-slate-300 px-3 py-2" value={form.takeaway3} onChange={(e) => setField('takeaway3', e.target.value)} required />
-          </label>
+          <p className="mt-0.5 text-xs text-slate-500">
+            Explain the surprising fact in clear, teen-friendly language. Include why it matters in real life, medicine, or science naturally in the article when relevant.
+          </p>
+          <textarea
+            rows={10}
+            className="mt-1.5 w-full rounded border border-slate-300 px-3 py-2 text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500"
+            value={form.content}
+            onChange={(e) => setField('content', e.target.value)}
+            required
+          />
         </div>
 
+        {/* 5. Fact badge (optional) */}
+        <div className="rounded-lg border border-slate-200 bg-slate-50/50 p-4">
+          <label className="block text-sm font-semibold text-slate-800">
+            Fact badge (optional)
+          </label>
+          <div className="mt-2 flex flex-wrap gap-4 text-sm text-slate-700">
+            <label className="flex items-center gap-1.5 cursor-pointer">
+              <input
+                type="radio"
+                name="factBadgeType"
+                value="none"
+                checked={form.factBadgeType === 'none'}
+                onChange={() => setField('factBadgeType', 'none')}
+              />
+              <span>Do not show a badge</span>
+            </label>
+            <label className="flex items-center gap-1.5 cursor-pointer">
+              <input
+                type="radio"
+                name="factBadgeType"
+                value="myth"
+                checked={form.factBadgeType === 'myth'}
+                onChange={() => setField('factBadgeType', 'myth')}
+              />
+              <span>Myth</span>
+            </label>
+            <label className="flex items-center gap-1.5 cursor-pointer">
+              <input
+                type="radio"
+                name="factBadgeType"
+                value="truth"
+                checked={form.factBadgeType === 'truth'}
+                onChange={() => setField('factBadgeType', 'truth')}
+              />
+              <span>Truth</span>
+            </label>
+          </div>
+
+          {form.factBadgeType !== 'none' && (
+            <div className="mt-4">
+              <label className="block text-sm font-semibold text-slate-800">
+                Badge statement <span className="text-red-500">*</span>
+              </label>
+              <p className="mt-0.5 text-xs text-slate-500">
+                Write the short claim readers may believe. The article itself should explain the science.
+              </p>
+              <input
+                type="text"
+                className="mt-1.5 w-full rounded border border-slate-300 px-3 py-2 text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 bg-white"
+                value={form.badgeStatement}
+                onChange={(e) => setField('badgeStatement', e.target.value)}
+                required
+              />
+            </div>
+          )}
+        </div>
+
+        {/* 6. Sources */}
         <div className="space-y-3">
-          <p className="text-sm font-semibold text-slate-700">Sources</p>
+          <label className="block text-sm font-semibold text-slate-800">
+            Sources <span className="text-red-500">*</span>
+          </label>
           {form.sources.map((source, index) => (
-            <div className="grid gap-4 md:grid-cols-2" key={index}>
-              <label className="text-sm font-semibold text-slate-700">Source Label
+            <div className="grid gap-3 md:grid-cols-[1fr_1fr_auto] items-start" key={index}>
+              <div>
+                <label className="block text-xs font-medium text-slate-600">Source Label</label>
                 <input
-                  className="mt-1 w-full rounded border border-slate-300 px-3 py-2"
+                  type="text"
+                  className="mt-1 w-full rounded border border-slate-300 px-3 py-1.5 text-sm text-slate-900 focus:border-pink-500 focus:outline-none"
                   value={source.label}
                   onChange={(e) => setSource(index, 'label', e.target.value)}
+                  placeholder="e.g. NIH"
                   required
                 />
-              </label>
-              <label className="text-sm font-semibold text-slate-700">Source URL
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-slate-600">Source URL</label>
                 <input
                   type="url"
-                  className="mt-1 w-full rounded border border-slate-300 px-3 py-2"
+                  className="mt-1 w-full rounded border border-slate-300 px-3 py-1.5 text-sm text-slate-900 focus:border-pink-500 focus:outline-none"
                   value={source.url}
                   onChange={(e) => setSource(index, 'url', e.target.value)}
+                  placeholder="https://example.org/source"
                   required
                 />
-              </label>
+              </div>
+              {form.sources.length > 1 && (
+                <button
+                  type="button"
+                  onClick={() => removeSource(index)}
+                  className="mt-6 text-xs font-semibold text-red-600 hover:underline"
+                >
+                  Remove
+                </button>
+              )}
             </div>
           ))}
-          <button type="button" onClick={addSource} className="rounded border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50">
+          <button
+            type="button"
+            onClick={addSource}
+            className="rounded border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+          >
             Add Source
           </button>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          <label className="text-sm font-semibold text-slate-700">Cover Image URL
-            <input className="mt-1 w-full rounded border border-slate-300 px-3 py-2" value={form.coverImageUrl} onChange={(e) => setField('coverImageUrl', e.target.value)} required />
+        {/* 7. Cover Image */}
+        <div>
+          <label className="block text-sm font-semibold text-slate-800">
+            Cover Image <span className="text-red-500">*</span>
           </label>
-          <label className="text-sm font-semibold text-slate-700">Cover Image Alt
-            <input className="mt-1 w-full rounded border border-slate-300 px-3 py-2" value={form.coverImageAlt} onChange={(e) => setField('coverImageAlt', e.target.value)} required />
-          </label>
+          <input
+            type="text"
+            className="mt-1 w-full rounded border border-slate-300 px-3 py-2 text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500"
+            value={form.coverImageUrl}
+            onChange={(e) => setField('coverImageUrl', e.target.value)}
+            placeholder="e.g. /heart-anatomy.png or https://example.com/image.jpg"
+            required
+          />
         </div>
 
-        <div className="grid gap-4 md:grid-cols-3">
-          <label className="text-sm font-semibold text-slate-700">SEO Title
-            <input className="mt-1 w-full rounded border border-slate-300 px-3 py-2" value={form.seoTitle || computedSeo} onChange={(e) => setField('seoTitle', e.target.value)} />
+        {/* 8. Cover Image Alt Text */}
+        <div>
+          <label className="block text-sm font-semibold text-slate-800">
+            Cover Image Alt Text <span className="text-red-500">*</span>
           </label>
-          <label className="text-sm font-semibold text-slate-700">Meta Description (max 160)
-            <input maxLength={160} className="mt-1 w-full rounded border border-slate-300 px-3 py-2" value={form.metaDescription || computedMeta} onChange={(e) => setField('metaDescription', e.target.value)} />
-          </label>
-          <label className="text-sm font-semibold text-slate-700">Excerpt
-            <input className="mt-1 w-full rounded border border-slate-300 px-3 py-2" value={form.excerpt || computedExcerpt} onChange={(e) => setField('excerpt', e.target.value)} />
-          </label>
+          <p className="mt-0.5 text-xs text-slate-500">
+            Describe what is visible in the image for readers using screen readers.
+          </p>
+          <input
+            type="text"
+            className="mt-1.5 w-full rounded border border-slate-300 px-3 py-2 text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500"
+            value={form.coverImageAlt}
+            onChange={(e) => setField('coverImageAlt', e.target.value)}
+            required
+          />
         </div>
 
-        <label className="block text-sm font-semibold text-slate-700">Published At
-          <input type="date" className="mt-1 w-full rounded border border-slate-300 px-3 py-2" value={form.publishedAt} onChange={(e) => setField('publishedAt', e.target.value)} required />
-        </label>
+        {/* 9. Optional SEO Settings */}
+        <details className="rounded-lg border border-slate-200 bg-slate-50/50 p-4">
+          <summary className="cursor-pointer text-sm font-semibold text-slate-800 hover:text-slate-900">
+            Optional SEO settings
+          </summary>
+          <div className="mt-4 space-y-4 pt-2 border-t border-slate-200">
+            {/* SEO Title */}
+            <div>
+              <label className="block text-sm font-semibold text-slate-800">
+                SEO Title
+              </label>
+              <p className="mt-0.5 text-xs text-slate-500">
+                Optional. If blank, the site uses the article title followed by “| Lexies Scrubs”.
+              </p>
+              <input
+                type="text"
+                className="mt-1.5 w-full rounded border border-slate-300 px-3 py-2 text-slate-900 focus:border-pink-500 focus:outline-none bg-white"
+                value={form.seoTitle}
+                onChange={(e) => setField('seoTitle', e.target.value)}
+                placeholder={computedSeoTitle}
+              />
+            </div>
 
-        {error ? <p className="text-sm text-red-600">{error}</p> : null}
+            {/* Meta Description */}
+            <div>
+              <div className="flex items-center justify-between">
+                <label className="block text-sm font-semibold text-slate-800">
+                  Meta Description
+                </label>
+                <span className="text-xs text-slate-500">
+                  {form.metaDescription.length} / 160 characters
+                </span>
+              </div>
+              <p className="mt-0.5 text-xs text-slate-500">
+                Optional. A short summary for search results. If blank, the site uses the question above.
+              </p>
+              <textarea
+                rows={2}
+                className="mt-1.5 w-full rounded border border-slate-300 px-3 py-2 text-slate-900 focus:border-pink-500 focus:outline-none bg-white"
+                value={form.metaDescription}
+                onChange={(e) => setField('metaDescription', e.target.value)}
+                placeholder={form.lead || 'Short summary for search results...'}
+              />
+            </div>
 
-        <button type="submit" disabled={saving} className="rounded-lg bg-pink-600 px-4 py-2 font-semibold text-white hover:bg-pink-700 disabled:opacity-60">
-          {saving ? 'Saving...' : 'Save Changes'}
-        </button>
+            {/* Excerpt */}
+            <div>
+              <label className="block text-sm font-semibold text-slate-800">
+                Excerpt
+              </label>
+              <p className="mt-0.5 text-xs text-slate-500">
+                Optional. Short text for article cards. If blank, the site uses the question above.
+              </p>
+              <textarea
+                rows={2}
+                className="mt-1.5 w-full rounded border border-slate-300 px-3 py-2 text-slate-900 focus:border-pink-500 focus:outline-none bg-white"
+                value={form.excerpt}
+                onChange={(e) => setField('excerpt', e.target.value)}
+                placeholder={form.lead || 'Short text for article cards...'}
+              />
+            </div>
+          </div>
+        </details>
+
+        {error ? <p className="text-sm text-red-600 font-medium">{error}</p> : null}
+
+        {/* 10. Publish / Update action */}
+        <div className="pt-2">
+          <button
+            type="submit"
+            disabled={saving}
+            className="rounded-lg bg-pink-600 px-6 py-2.5 font-semibold text-white hover:bg-pink-700 disabled:opacity-60 transition-colors"
+          >
+            {saving ? 'Saving...' : 'Save Changes'}
+          </button>
+        </div>
       </form>
     </div>
   );

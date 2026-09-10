@@ -21,19 +21,9 @@ interface Post {
   mythOrTruthExplanation?: string;
 }
 
-interface MythOrTruthEntry {
-  id: string;
-  sourceType: 'post' | 'standalone-myth';
-  postSlug?: string;
-  title: string;
-  choice: 'Myth' | 'Truth';
-  explanation: string;
-}
-
 export default function HomePage() {
   const [latestPost, setLatestPost] = useState<Post | null>(null);
   const [previousPost, setPreviousPost] = useState<Post | null>(null);
-  const [randomMythEntry, setRandomMythEntry] = useState<MythOrTruthEntry | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -49,26 +39,6 @@ export default function HomePage() {
 
         if (posts.length > 1) {
           setPreviousPost(posts[1]);
-        }
-
-        const excludedSlugs = new Set(
-          [posts[0]?.slug, posts[1]?.slug].filter((slug): slug is string => Boolean(slug))
-        );
-
-        const mythResponse = await fetch('/api/myths');
-        const mythData = await mythResponse.json();
-        const allEntries: MythOrTruthEntry[] = Array.isArray(mythData.entries) ? mythData.entries : [];
-
-        const mythCandidates = allEntries.filter((entry) => {
-          if (!entry.postSlug) {
-            return true;
-          }
-          return !excludedSlugs.has(entry.postSlug);
-        });
-
-        if (mythCandidates.length > 0) {
-          const randomIndex = Math.floor(Math.random() * mythCandidates.length);
-          setRandomMythEntry(mythCandidates[randomIndex]);
         }
       } catch (error) {
         console.error('Error fetching featured post:', error);
@@ -163,13 +133,15 @@ export default function HomePage() {
             <h2 className="la-title la-section-title mb-4 text-2xl font-bold md:text-3xl">{previousPost.title}</h2>
             <p className="la-subtitle mb-6 text-lg">{previousPost.excerpt}</p>
             <hr className="la-rule mb-6" />
-            <div className="mb-6">
-              <span className="la-badge mr-2 bg-[#e7c5ce] text-[#2e3b5b]">
+            <div className="mb-6 flex items-center gap-2">
+              <span className="la-badge bg-[#e7c5ce] text-[#2e3b5b]">
                 Question-led
               </span>
-              <span className="la-badge bg-[#dce4ec] text-[#2e3b5b]">
-                Myth or Truth
-              </span>
+              {(previousPost.mythOrTruth?.label === 'Myth' || previousPost.mythOrTruthChoice === 'Myth') && (
+                <span className="la-badge bg-[#f8e6ee] text-[#a5546f]">
+                  Myth
+                </span>
+              )}
             </div>
             <Link
               href={`/posts/${previousPost.slug}`}
@@ -227,45 +199,6 @@ export default function HomePage() {
           <p className="text-[#536079]">
             Each fact connects back to doctors, patients, parents, or everyday life.
           </p>
-        </div>
-      </div>
-
-      {/* Myth spotlight */}
-      <div className="bg-[#f7f3ef]/92 py-16">
-        <div className="mx-auto max-w-6xl px-6">
-          <h2 className="la-title la-section-title mb-8 text-center text-3xl font-bold">Myth or Truth</h2>
-          {randomMythEntry ? (
-            <div className="la-card mb-8 p-8">
-              <p className="mb-2 text-sm font-semibold text-[#6b7f97]">From: {randomMythEntry.title}</p>
-              <p className="mb-4">
-                <span className={`mb-2 block font-bold ${randomMythEntry.choice === 'Myth' ? 'text-[#7f94ac]' : 'text-[#2e3b5b]'}`}>
-                  {randomMythEntry.choice === 'Myth' ? "No, it's a Myth" : "Yes, it's a Truth"}
-                </span>
-                <span className="text-[#3f5369]">{randomMythEntry.explanation}</span>
-              </p>
-              {randomMythEntry.postSlug ? (
-                <Link href={`/posts/${randomMythEntry.postSlug}`} className="la-link font-semibold hover:underline">
-                  Read the full investigation
-                </Link>
-              ) : (
-                <Link href="/myth-or-truth" className="la-link font-semibold hover:underline">
-                  See more myth checks
-                </Link>
-              )}
-            </div>
-          ) : (
-            <div className="la-card mb-8 p-8">
-              <p className="text-[#3f5369]">Myth checks will appear here as soon as more posts are published.</p>
-            </div>
-          )}
-          <div className="text-center">
-            <Link
-              href="/myth-or-truth"
-              className="la-btn-primary px-6 py-2.5"
-            >
-              See More Myths
-            </Link>
-          </div>
         </div>
       </div>
 
@@ -328,41 +261,20 @@ export default function HomePage() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/about" className="transition-colors hover:text-white">
-                    About
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="mb-4 font-bold text-white">Explore</h3>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <Link href="/myth-or-truth" className="transition-colors hover:text-white">
-                    Myth or Truth
-                  </Link>
-                </li>
-                <li>
                   <Link href="/about-lexi" className="transition-colors hover:text-white">
                     About Lexi
                   </Link>
                 </li>
                 <li>
-                  <Link href="/sources" className="transition-colors hover:text-white">
-                    Sources
+                  <Link href="/contact" className="transition-colors hover:text-white">
+                    Contact
                   </Link>
                 </li>
               </ul>
             </div>
             <div>
               <h3 className="mb-4 font-bold text-white">Get Involved</h3>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <Link href="/contact" className="transition-colors hover:text-white">
-                    Submit a Question
-                  </Link>
-                </li>
-              </ul>
+              <p className="text-sm">Curious about a biology or medicine question?</p>
             </div>
             <div>
               <h3 className="mb-4 font-bold text-white">Legal</h3>

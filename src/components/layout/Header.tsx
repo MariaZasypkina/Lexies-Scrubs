@@ -34,8 +34,7 @@ export default function Header() {
         <nav className="hidden flex-wrap items-center justify-end gap-2 text-sm font-semibold text-[#4a5f75] md:flex md:gap-3">
           <Link href="/" className="rounded-full border border-transparent px-3 py-1.5 transition-colors hover:border-[color:var(--line)] hover:bg-[#f7f0f5] hover:text-[#2d4258] hover:underline hover:decoration-[rgba(184,111,136,0.5)] hover:underline-offset-4">Home</Link>
           <Link href="/facts" className="rounded-full border border-transparent px-3 py-1.5 transition-colors hover:border-[color:var(--line)] hover:bg-[#eef5fa] hover:text-[#2d4258] hover:underline hover:decoration-[rgba(94,131,159,0.5)] hover:underline-offset-4">All Facts</Link>
-          <Link href="/myth-or-truth" className="rounded-full border border-transparent px-3 py-1.5 transition-colors hover:border-[color:var(--line)] hover:bg-[#f7f0f5] hover:text-[#2d4258] hover:underline hover:decoration-[rgba(184,111,136,0.5)] hover:underline-offset-4">Myth or Truth</Link>
-          <Link href="/about" className="rounded-full border border-transparent px-3 py-1.5 transition-colors hover:border-[color:var(--line)] hover:bg-[#eef5fa] hover:text-[#2d4258] hover:underline hover:decoration-[rgba(94,131,159,0.5)] hover:underline-offset-4">About</Link>
+          <Link href="/about-lexi" className="rounded-full border border-transparent px-3 py-1.5 transition-colors hover:border-[color:var(--line)] hover:bg-[#eef5fa] hover:text-[#2d4258] hover:underline hover:decoration-[rgba(94,131,159,0.5)] hover:underline-offset-4">About Lexi</Link>
           <Link href="/contact" className="rounded-full border border-transparent px-3 py-1.5 transition-colors hover:border-[color:var(--line)] hover:bg-[#f7f0f5] hover:text-[#2d4258] hover:underline hover:decoration-[rgba(184,111,136,0.5)] hover:underline-offset-4">Contact</Link>
         </nav>
       </div>
@@ -47,8 +46,7 @@ export default function Header() {
         >
           <Link href="/" onClick={closeMenu} className="rounded-2xl border border-[color:var(--line)] px-4 py-3 text-sm font-semibold text-[#4a5f75] transition-colors hover:bg-[#f7f0f5] hover:text-[#2d4258]">Home</Link>
           <Link href="/facts" onClick={closeMenu} className="rounded-2xl border border-[color:var(--line)] px-4 py-3 text-sm font-semibold text-[#4a5f75] transition-colors hover:bg-[#eef5fa] hover:text-[#2d4258]">All Facts</Link>
-          <Link href="/myth-or-truth" onClick={closeMenu} className="rounded-2xl border border-[color:var(--line)] px-4 py-3 text-sm font-semibold text-[#4a5f75] transition-colors hover:bg-[#f7f0f5] hover:text-[#2d4258]">Myth or Truth</Link>
-          <Link href="/about" onClick={closeMenu} className="rounded-2xl border border-[color:var(--line)] px-4 py-3 text-sm font-semibold text-[#4a5f75] transition-colors hover:bg-[#eef5fa] hover:text-[#2d4258]">About</Link>
+          <Link href="/about-lexi" onClick={closeMenu} className="rounded-2xl border border-[color:var(--line)] px-4 py-3 text-sm font-semibold text-[#4a5f75] transition-colors hover:bg-[#eef5fa] hover:text-[#2d4258]">About Lexi</Link>
           <Link href="/contact" onClick={closeMenu} className="rounded-2xl border border-[color:var(--line)] px-4 py-3 text-sm font-semibold text-[#4a5f75] transition-colors hover:bg-[#f7f0f5] hover:text-[#2d4258]">Contact</Link>
         </nav>
       )}
