@@ -20,7 +20,7 @@ This file provides context for AI agents (GitHub Copilot, Copilot Workspace, etc
 |---|---|
 | Framework | Next.js (App Router, fullstack) |
 | UI | React + Tailwind CSS |
-| Database | MongoDB |
+| Data Storage | Local JSON |
 | Deployment | Vercel |
 | Image hosting | External (Cloudinary or similar) |
 
@@ -73,7 +73,7 @@ Post.ts
 
 ---
 
-## Content Model (MongoDB — posts collection)
+## Content Model (posts collection)
 
 Each post has these fields:
 - `title`, `slug`, `lead` (hook), `mainExplanation`
@@ -104,7 +104,6 @@ Admin features (MVP):
 ---
 
 ## Environment Variables
-MONGODB_URI=
 AUTH_SECRET=
 ADMIN_USERNAME=
 ADMIN_PASSWORD_HASH=

@@ -39,17 +39,33 @@ export default async function PostPage({ params }: PageProps) {
     notFound();
   }
 
+  const isMyth = post.factBadge
+    ? post.factBadge.type === 'myth'
+    : (post.mythOrTruth?.label === 'Myth' || post.mythOrTruthChoice === 'Myth');
+
+  const badgeType = post.factBadge?.type || (post.mythOrTruth?.label ? post.mythOrTruth.label.toLowerCase() : undefined);
+  const badgeStatement = post.factBadge?.statement || post.mythOrTruth?.text;
+
   const mythOrTruthDisplayLabel =
-    post.mythOrTruth.label === 'Myth'
+    badgeType === 'myth'
       ? "No, it's a Myth"
-      : post.mythOrTruth.label === 'Truth'
+      : badgeType === 'truth'
         ? "Yes, it's a Truth"
-        : post.mythOrTruth.label;
+        : post.mythOrTruth?.label;
+
+  const articleText = post.content || post.mainExplanation || '';
 
   return (
     <article className="la-page min-h-screen">
       <div className="la-hero py-12">
         <div className="max-w-3xl mx-auto px-6">
+          {isMyth && (
+            <div className="mb-3">
+              <span className="la-badge bg-[#f8e6ee] text-[#a5546f] text-xs font-semibold px-3 py-1 rounded-full">
+                Myth
+              </span>
+            </div>
+          )}
           <h1 className="la-title la-section-title mb-4 text-4xl font-bold md:text-5xl">{post.title}</h1>
           <p className="la-subtitle text-lg">{post.lead}</p>
           <time className="mt-4 block text-sm text-[#6b7f92]">
@@ -72,19 +88,21 @@ export default async function PostPage({ params }: PageProps) {
         <hr className="la-divider mb-8" />
         <div className="la-heading-stack mb-12 prose prose-lg max-w-none">
           <h2 className="la-title la-section-title mb-4 text-2xl font-bold">The Explanation</h2>
-          <p className="whitespace-pre-wrap leading-relaxed text-[#3f5369]">{post.mainExplanation}</p>
+          <p className="whitespace-pre-wrap leading-relaxed text-[#3f5369]">{articleText}</p>
         </div>
 
-        <div className="la-soft-note mb-12 border-l-4 border-[#bb6f88] p-6">
-          <h2 className="la-title la-section-title mb-4 text-2xl font-bold">Myth or Truth?</h2>
-          <div className="space-y-2">
-            <p>
-              <span className="font-semibold text-[#a1536d]">{mythOrTruthDisplayLabel}</span> {post.mythOrTruth.text}
-            </p>
+        {badgeStatement && (
+          <div className="la-soft-note mb-12 border-l-4 border-[#bb6f88] p-6">
+            <h2 className="la-title la-section-title mb-4 text-2xl font-bold">Myth or Truth?</h2>
+            <div className="space-y-2">
+              <p>
+                <span className="font-semibold text-[#a1536d]">{mythOrTruthDisplayLabel}</span> {badgeStatement}
+              </p>
+            </div>
           </div>
-        </div>
+        )}
 
-        {post.glossary.length > 0 && (
+        {post.glossary && post.glossary.length > 0 && (
           <div className="mb-12">
             <h2 className="la-title la-section-title mb-4 text-2xl font-bold">Key Terms</h2>
             <div className="space-y-4">
@@ -98,12 +116,14 @@ export default async function PostPage({ params }: PageProps) {
           </div>
         )}
 
-        <div className="la-soft-note mb-12 p-6">
-          <h2 className="la-title la-section-title mb-4 text-2xl font-bold">Why This Matters</h2>
-          <p className="leading-relaxed text-[#3f5369]">{post.whyThisMatters}</p>
-        </div>
+        {post.whyThisMatters && (
+          <div className="la-soft-note mb-12 p-6">
+            <h2 className="la-title la-section-title mb-4 text-2xl font-bold">Why This Matters</h2>
+            <p className="leading-relaxed text-[#3f5369]">{post.whyThisMatters}</p>
+          </div>
+        )}
 
-        {post.keyTakeaways.length > 0 && (
+        {post.keyTakeaways && post.keyTakeaways.length > 0 && (
           <div className="mb-12">
             <h2 className="la-title la-section-title mb-4 text-2xl font-bold">3 Key Takeaways</h2>
             <ul className="space-y-2">

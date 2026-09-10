@@ -1,12 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { ObjectId } from 'mongodb';
-import { getPostById, getPostBySlug, slugExists, updatePost } from '@/lib/posts';
+import { deletePost, getPostById, getPostBySlug, slugExists, updatePost } from '@/lib/posts';
 import { verifyAdminAuth } from '@/lib/auth';
-import { generateExcerpt, generateMetaDescription, generateSeoTitle, generateSlug } from '@/models/Post';
-
-function isObjectId(value: string) {
-  return ObjectId.isValid(value) && new ObjectId(value).toString() === value;
-}
+import { generateSeoTitle, normalizeSlug, Post } from '@/models/Post';
 
 export async function GET(
   _request: NextRequest,
@@ -15,11 +10,10 @@ export async function GET(
   try {
     const { identifier } = await params;
 
-    // Required behavior: /api/posts/[slug] for public page.
-    // Convenience: also supports id lookup for admin edit prefill.
-    const post = isObjectId(identifier)
-      ? await getPostById(identifier)
-      : await getPostBySlug(identifier);
+    let post = await getPostById(identifier);
+    if (!post) {
+      post = await getPostBySlug(identifier);
+    }
 
     if (!post) {
       return NextResponse.json({ error: 'Post not found' }, { status: 404 });
@@ -43,33 +37,115 @@ export async function PUT(
     }
 
     const { identifier } = await params;
-    if (!isObjectId(identifier)) {
-      return NextResponse.json({ error: 'Invalid post id' }, { status: 400 });
+    let post = await getPostById(identifier);
+    if (!post) {
+      post = await getPostBySlug(identifier);
     }
 
-    const body = await request.json();
+    if (!post) {
+      return NextResponse.json({ error: 'Post not found' }, { status: 404 });
+    }
+
+    const targetId = String(post._id || post.id);
+    const data = await request.json();
+
+    const title = typeof data.title === 'string' ? data.title.trim() : '';
+    const lead = typeof data.lead === 'string' ? data.lead.trim() : '';
+    const content = typeof data.content === 'string' ? data.content.trim() : '';
+    const coverImageUrl = typeof data.coverImageUrl === 'string' ? data.coverImageUrl.trim() : '';
+    const coverImageAlt = typeof data.coverImageAlt === 'string' ? data.coverImageAlt.trim() : '';
+
+    if (!title) {
+      return NextResponse.json({ error: 'Title is required' }, { status: 400 });
+    }
+    if (!lead) {
+      return NextResponse.json({ error: 'The Question That Started It is required' }, { status: 400 });
+    }
+    if (!content) {
+      return NextResponse.json({ error: 'Article Content is required' }, { status: 400 });
+    }
+    if (!coverImageUrl) {
+      return NextResponse.json({ error: 'Cover Image URL is required' }, { status: 400 });
+    }
+    if (!coverImageAlt) {
+      return NextResponse.json({ error: 'Cover Image Alt Text is required' }, { status: 400 });
+    }
+
+    if (!Array.isArray(data.sources) || data.sources.length < 1) {
+      return NextResponse.json({ error: 'At least one source is required' }, { status: 400 });
+    }
+
+    for (const source of data.sources) {
+      const label = typeof source.label === 'string' ? source.label.trim() : '';
+      const url = typeof source.url === 'string' ? source.url.trim() : '';
+      if (!label) {
+        return NextResponse.json({ error: 'Source label cannot be blank' }, { status: 400 });
+      }
+      if (!url || !/^https?:\/\//i.test(url)) {
+        return NextResponse.json({ error: 'Source URL must begin with http:// or https://' }, { status: 400 });
+      }
+    }
+
+    const rawSlug = typeof data.slug === 'string' && data.slug.trim() ? data.slug : title;
+    const slug = normalizeSlug(rawSlug);
+
+    if (!slug) {
+      return NextResponse.json({ error: 'Slug is required' }, { status: 400 });
+    }
+
+    if (await slugExists(slug, targetId)) {
+      return NextResponse.json({ error: 'A post with this slug already exists' }, { status: 400 });
+    }
+
+    const seoTitle = typeof data.seoTitle === 'string' && data.seoTitle.trim()
+      ? data.seoTitle.trim()
+      : generateSeoTitle(title);
+
+    const metaDescription = typeof data.metaDescription === 'string' && data.metaDescription.trim()
+      ? data.metaDescription.trim()
+      : lead;
+
+    const excerpt = typeof data.excerpt === 'string' && data.excerpt.trim()
+      ? data.excerpt.trim()
+      : lead;
+
     const updates: Record<string, unknown> = {
-      ...body,
-      slug: body.slug || generateSlug(body.title || ''),
-      seoTitle: body.seoTitle || generateSeoTitle(body.title || ''),
-      excerpt: body.excerpt || generateExcerpt(body.lead || ''),
-      metaDescription: (body.metaDescription || generateMetaDescription(body.lead || '')).slice(0, 160),
-      mythOrTruthChoice: body.mythOrTruthChoice || body.mythOrTruth?.label,
-      mythOrTruthExplanation: body.mythOrTruthExplanation || body.mythOrTruth?.text,
+      title,
+      slug,
+      lead,
+      content,
+      sources: data.sources.map((s: { label: string; url: string }) => ({
+        label: String(s.label).trim(),
+        url: String(s.url).trim(),
+      })),
+      coverImageUrl,
+      coverImageAlt,
+      seoTitle,
+      metaDescription,
+      excerpt,
     };
 
-    if (updates.slug && (await slugExists(String(updates.slug), identifier))) {
-      return NextResponse.json({ error: 'Slug already exists' }, { status: 400 });
+    if (data.factBadge && (data.factBadge.type === 'myth' || data.factBadge.type === 'truth')) {
+      const statement = typeof data.factBadge.statement === 'string' ? data.factBadge.statement.trim() : '';
+      if (!statement) {
+        return NextResponse.json({ error: 'Badge statement is required when Myth or Truth is selected' }, { status: 400 });
+      }
+      updates.factBadge = {
+        type: data.factBadge.type,
+        statement,
+      };
+    } else {
+      updates.factBadge = undefined;
     }
 
-    if (body.publishedAt) {
-      const date = new Date(body.publishedAt);
+    if (data.publishedAt) {
+      const date = new Date(data.publishedAt);
       if (!Number.isNaN(date.getTime())) {
         updates.publishedAt = date;
       }
     }
 
-    const ok = await updatePost(identifier, updates as any);
+    const ok = await updatePost(targetId, updates as Partial<Post>);
     if (!ok) {
       return NextResponse.json({ error: 'Post not found' }, { status: 404 });
     }
@@ -78,5 +154,38 @@ export async function PUT(
   } catch (error) {
     console.error('Error updating post:', error);
     return NextResponse.json({ error: 'Failed to update post' }, { status: 500 });
+  }
+}
+
+export async function DELETE(
+  _request: NextRequest,
+  { params }: { params: Promise<{ identifier: string }> }
+) {
+  try {
+    const auth = await verifyAdminAuth();
+    if (!auth) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const { identifier } = await params;
+    let post = await getPostById(identifier);
+    if (!post) {
+      post = await getPostBySlug(identifier);
+    }
+
+    if (!post) {
+      return NextResponse.json({ error: 'Post not found' }, { status: 404 });
+    }
+
+    const targetId = String(post._id);
+    const ok = await deletePost(targetId);
+    if (!ok) {
+      return NextResponse.json({ error: 'Failed to delete post' }, { status: 400 });
+    }
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Error deleting post:', error);
+    return NextResponse.json({ error: 'Failed to delete post' }, { status: 500 });
   }
 }

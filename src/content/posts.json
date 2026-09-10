@@ -1,0 +1,221 @@
+[
+  {
+    "_id": "66708f51a2b1000100000001",
+    "title": "Does Your Heart Sit On the Left Side Of Your Chest?",
+    "slug": "why-doesnt-your-heart-sit-exactly-in-the-center",
+    "lead": "You've probably been told that your heart is on the left side of your chest. But if you actually look at human anatomy, your heart sits almost right in the middle, it's just tilted.",
+    "mainExplanation": "The heart is located in the middle of your chest, inside a space called the mediastinum, right between your lungs. However, its apex, the pointed bottom tip, tilts towards the left. Because the left side of the heart (the left ventricle) does the heavy lifting of pumping oxygenated blood to your entire body, it has thicker, stronger muscle walls. When your heart beats, you feel that powerful thumping pulse mostly on the left side of your chest!\n\nAdditionally, during embryonic development, as the heart tube folds and forms its four chambers, a complex signaling cascade causes the heart to loop towards the right and left asymmetry to develop. This leftward tilt leaves less room in the chest for the left lung, which is why your left lung has only two lobes while your right lung has three!",
+    "mythOrTruth": {
+      "label": "Myth",
+      "text": "Your heart is not completely on the left side of your body. It is centered between your lungs, but tilted toward the left, which is why its heartbeat feels stronger on that side."
+    },
+    "mythOrTruthChoice": "Myth",
+    "mythOrTruthExplanation": "Your heart is not completely on the left side of your body. It is centered between your lungs, but tilted toward the left, which is why its heartbeat feels stronger on that side.",
+    "glossary": [
+      {
+        "term": "Mediastinum",
+        "definition": "The central compartment of the thoracic cavity that holds the heart, esophagus, and trachea."
+      }
+    ],
+    "whyThisMatters": "Understanding left-right body asymmetry is essential in medicine. Conditions like Dextrocardia cause the heart to point to the right instead of the left, which doctors must know before performing ECGs or surgeries.",
+    "keyTakeaways": [
+      "The heart sits in the middle of your chest, not entirely on the left side.",
+      "The left ventricle is thicker and pumps blood to the whole body, making the pulse feel stronger on the left.",
+      "The left lung is slightly smaller (two lobes instead of three) to make space for the heart's leftward tilt."
+    ],
+    "sources": [
+      {
+        "label": "Mayo Clinic - Heart Anatomy",
+        "url": "https://www.mayoclinic.org"
+      },
+      {
+        "label": "NIH - Human Cardiovascular System",
+        "url": "https://www.ncbi.nlm.nih.gov"
+      }
+    ],
+    "coverImageUrl": "/heart-anatomy.jpg",
+    "coverImageAlt": "Illustration of heart position in human chest",
+    "seoTitle": "Does Your Heart Sit On the Left Side Of Your Chest? | Lexies Scrubs",
+    "metaDescription": "You've probably been told that your heart is on the left side of your chest. But if you actually look at human anatomy, your heart sits almost right in the midd",
+    "excerpt": "You've probably been told that your heart is on the left side of your chest. But if you actually look at human anatomy, your heart sits almost right in the middle.",
+    "publishedAt": "2026-06-18T00:00:00.000Z",
+    "updatedAt": "2026-09-10T22:07:39.187Z",
+    "content": "The heart is located in the middle of your chest, inside a space called the mediastinum, right between your lungs. However, its apex, the pointed bottom tip, tilts towards the left. Because the left side of the heart (the left ventricle) does the heavy lifting of pumping oxygenated blood to your entire body, it has thicker, stronger muscle walls. When your heart beats, you feel that powerful thumping pulse mostly on the left side of your chest!\n\nAdditionally, during embryonic development, as the heart tube folds and forms its four chambers, a complex signaling cascade causes the heart to loop towards the right and left asymmetry to develop. This leftward tilt leaves less room in the chest for the left lung, which is why your left lung has only two lobes while your right lung has three!\n\nUnderstanding left-right body asymmetry is essential in medicine. Conditions like Dextrocardia cause the heart to point to the right instead of the left, which doctors must know before performing ECGs or surgeries.",
+    "factBadge": {
+      "type": "myth",
+      "statement": "Your heart is not completely on the left side of your body. It is centered between your lungs, but tilted toward the left, which is why its heartbeat feels stronger on that side."
+    }
+  },
+  {
+    "_id": "66708f51a2b1000100000002",
+    "title": "Why Do Your Fingers Wrinkle in the Bath?",
+    "slug": "why-do-your-fingers-wrinkle-in-the-bath",
+    "lead": "Soaking in water for 20 minutes leaves your fingertips looking like raisins. For decades, scientists thought it was just skin absorbing water — until they discovered a far cooler secret.",
+    "mainExplanation": "If wrinkled skin were caused purely by osmosis (water soaking into skin cell walls), dead skin or paralyzed fingers would wrinkle too. But nerve damage studies proved that if the nerves in a finger are severed, that finger will never wrinkle in water!\n\nPruney fingers are actually an active involuntary response triggered by your nervous system. When your sympathetic nervous system senses prolonged immersion in water, it signals blood vessels beneath your skin to constrict (shrink). As the blood vessels shrink, skin volume shrinks, pulling the outer skin downward into distinct channels and wrinkles.\n\nWhy did evolution give us this trait? Researchers tested wet object handling and found that pruney fingers act like rain tread on car tires! The channels channel water away, giving our hands and feet significantly better grip on wet surfaces.",
+    "mythOrTruth": {
+      "label": "Myth",
+      "text": "Fingers do not wrinkle because your skin absorbs water like a sponge. It is an active nervous system reaction designed to improve grip underwater."
+    },
+    "mythOrTruthChoice": "Myth",
+    "mythOrTruthExplanation": "Fingers do not wrinkle because your skin absorbs water like a sponge. It is an active nervous system reaction designed to improve grip underwater.",
+    "glossary": [
+      {
+        "term": "Vasoconstriction",
+        "definition": "The narrowing of blood vessels resulting from contraction of the muscular wall of the vessels."
+      },
+      {
+        "term": "Sympathetic Nervous System",
+        "definition": "The branch of the autonomic nervous system that directs the body's involuntary responses."
+      }
+    ],
+    "whyThisMatters": "Neurologists actually use the finger-wrinkling test at bedside to evaluate autonomic nervous system function in patients without needing complex machinery!",
+    "keyTakeaways": [
+      "Pruney fingers are controlled by your sympathetic nervous system, not simple soaking.",
+      "Blood vessels contract under the skin, creating grooves that channel water away.",
+      "The evolutionary purpose is to give human hands and feet better traction in wet environments."
+    ],
+    "sources": [
+      {
+        "label": "PubMed - Rain-tread wrinkled fingers research",
+        "url": "https://pubmed.ncbi.nlm.nih.gov"
+      }
+    ],
+    "coverImageUrl": "/pruney-fingers.jpeg",
+    "coverImageAlt": "Illustration of wet wrinkled fingers",
+    "seoTitle": "Why Do Your Fingers Wrinkle in the Bath? | Lexies Scrubs",
+    "metaDescription": "Soaking in water leaves your fingertips looking like raisins. Scientists discovered it's not skin soaking up water — it's an active nerve response.",
+    "excerpt": "Soaking in water leaves your fingertips looking like raisins. Scientists discovered it's not skin soaking up water — it's an active nerve response.",
+    "publishedAt": "2026-06-17T12:00:00.000Z",
+    "updatedAt": "2026-06-17T12:00:00.000Z"
+  },
+  {
+    "_id": "66708f51a2b1000100000003",
+    "title": "Can You Really Freeze Off a Brain Freeze?",
+    "slug": "can-you-really-freeze-off-a-brain-freeze",
+    "lead": "Eating ice cream too quickly can trigger a sudden, sharp headache behind your eyes. But why does cold in your mouth hurt your brain?",
+    "mainExplanation": "Brain freeze, medically known as sphenopalatine ganglioneuralgia, happens when cold substances touch the roof of your mouth (the palate). Cold rapidly chills the internal carotid artery and anterior cerebral artery, causing blood vessels in the palate to rapidly constrict and then dilate to warm the tissue back up.\n\nThis rapid dilation shoots pain signals through the trigeminal nerve — the main nerve that carries facial sensations to the brain. Because the trigeminal nerve also senses pain from the forehead and forehead regions, your brain misinterprets the mouth pain as coming from inside your head! Pressing your tongue flat against the warm roof of your mouth instantly warms the blood vessels, stopping the pain signal.",
+    "mythOrTruth": {
+      "label": "Truth",
+      "text": "Yes, brain freeze is real pain caused by rapid blood vessel changes in your mouth palate, but it causes no actual brain damage."
+    },
+    "mythOrTruthChoice": "Truth",
+    "mythOrTruthExplanation": "Yes, brain freeze is real pain caused by rapid blood vessel changes in your mouth palate, but it causes no actual brain damage.",
+    "glossary": [
+      {
+        "term": "Sphenopalatine ganglioneuralgia",
+        "definition": "The formal medical term for brain freeze headache."
+      },
+      {
+        "term": "Trigeminal Nerve",
+        "definition": "The fifth cranial nerve responsible for sending pain, touch, and thermal sensations from the face to the brain."
+      }
+    ],
+    "whyThisMatters": "Brain freeze is studied by neuroscientists to better understand vascular headaches and migraines, which share similar blood vessel dilation mechanisms.",
+    "keyTakeaways": [
+      "Brain freeze occurs when cold foods touch the roof of your mouth.",
+      "Blood vessels dilate rapidly, sending signals along the trigeminal nerve.",
+      "Pressing your tongue against the roof of your mouth helps relieve brain freeze quickly."
+    ],
+    "sources": [
+      {
+        "label": "Cleveland Clinic - Brain Freeze Explained",
+        "url": "https://my.clevelandclinic.org"
+      }
+    ],
+    "coverImageUrl": "/brain-freeze.jpg",
+    "coverImageAlt": "Illustration of mouth palate and nerve pathways",
+    "seoTitle": "Can You Really Freeze Off a Brain Freeze? | Lexies Scrubs",
+    "metaDescription": "Eating ice cream too quickly triggers a sharp headache. Learn the medical reason behind sphenopalatine ganglioneuralgia.",
+    "excerpt": "Eating ice cream too quickly triggers a sharp headache. Learn the medical reason behind sphenopalatine ganglioneuralgia.",
+    "publishedAt": "2026-06-16T12:00:00.000Z",
+    "updatedAt": "2026-06-16T12:00:00.000Z"
+  },
+  {
+    "_id": "66708f51a2b1000100000004",
+    "title": "Can Muscle Turn Into Fat, or Fat Into Muscle?",
+    "slug": "can-muscle-turn-into-fat-or-fat-into-muscle",
+    "lead": "When someone stops working out, people often say their muscle turned into fat. But is it biologically possible for one type of tissue to transform into another?",
+    "mainExplanation": "Fat and muscle are two completely distinct cell types with entirely different cellular structures and functions. Muscle tissue is made of muscle fibers containing contractile proteins, whereas fat tissue (adipose tissue) consists of adipocytes designed to store energy.\n\nOne cell type cannot morph or transform into the other. What actually happens when you stop exercising or change your diet is two separate biological processes occurring at the same time: muscle atrophy (your muscle cells shrink from disuse) and energy excess (unused calories are stored as new fat in fat cells).\n\nConversely, when you start training, you burn stored fat for energy while building muscle fibers through protein synthesis. They exchange place in terms of body composition, but muscle never becomes fat, and fat never becomes muscle!",
+    "mythOrTruth": {
+      "label": "Myth",
+      "text": "Fat cannot turn into muscle, and muscle cannot turn into fat. They are two different kinds of tissue, so what really happens is that you can lose fat while building muscle, or lose muscle while gaining fat."
+    },
+    "mythOrTruthChoice": "Myth",
+    "mythOrTruthExplanation": "Fat cannot turn into muscle, and muscle cannot turn into fat. They are two different kinds of tissue, so what really happens is that you can lose fat while building muscle, or lose muscle while gaining fat.",
+    "glossary": [
+      {
+        "term": "Adipocyte",
+        "definition": "A specialized cell designed primarily for storing energy in the form of fat."
+      },
+      {
+        "term": "Muscle Atrophy",
+        "definition": "The decrease in size and mass of muscle tissue caused by lack of physical activity or illness."
+      }
+    ],
+    "whyThisMatters": "Understanding that muscle and fat are separate tissues helps athletes and fitness enthusiasts design better training and nutrition plans focused on preserving muscle while losing fat.",
+    "keyTakeaways": [
+      "Muscle and fat are distinct cell types that cannot convert into one another.",
+      "Stopping workouts causes muscle cells to shrink, while excess calories increase fat storage.",
+      "Gaining muscle and losing fat are two parallel processes, not a direct conversion."
+    ],
+    "sources": [
+      {
+        "label": "Mayo Clinic - Muscle and Fat Physiology",
+        "url": "https://www.mayoclinic.org"
+      }
+    ],
+    "coverImageUrl": "/fatandmuscle.png",
+    "coverImageAlt": "Illustration comparing muscle tissue and fat cells",
+    "seoTitle": "Can Muscle Turn Into Fat, or Fat Into Muscle? | Lexies Scrubs",
+    "metaDescription": "When someone stops working out, people often say their muscle turned into fat. Here is the real science behind muscle and fat tissue.",
+    "excerpt": "When someone stops working out, people often say their muscle turned into fat. Here is the real science behind muscle and fat tissue.",
+    "publishedAt": "2026-06-15T12:00:00.000Z",
+    "updatedAt": "2026-06-15T12:00:00.000Z"
+  },
+  {
+    "_id": "66708f51a2b1000100000005",
+    "title": "Can Eating Carrots Give You Superhero Night Vision?",
+    "slug": "can-eating-carrots-give-you-night-vision",
+    "lead": "You've likely been told that eating carrots will help you see in the pitch dark. While carrots are fantastic for eye health, the idea that they give you night vision started as a WWII military cover story!",
+    "mainExplanation": "Carrots are rich in beta-carotene, a precursor that your body converts into Vitamin A. Vitamin A is crucial for forming rhodopsin, a pigment in the retina's rod cells that helps your eyes absorb light in low-light conditions.\n\nWhile a severe Vitamin A deficiency can cause night blindness (and eating carrots restores normal vision), eating extra carrots will not give an otherwise healthy person super-human night vision!\n\nWhere did this myth come from? During World War II, the British Royal Air Force developed secret Airborne Interception radar to spot enemy planes at night. To keep the radar technology top secret, the British Ministry of Information spread a rumor that their pilots had extraordinary night vision because they ate massive amounts of carrots!",
+    "mythOrTruth": {
+      "label": "Myth",
+      "text": "While carrots are good for your eyes because they help your body make Vitamin A, they will not magically let you see in the dark like a superhero."
+    },
+    "mythOrTruthChoice": "Myth",
+    "mythOrTruthExplanation": "While carrots are good for your eyes because they help your body make Vitamin A, they will not magically let you see in the dark like a superhero.",
+    "glossary": [
+      {
+        "term": "Beta-carotene",
+        "definition": "A plant pigment that gives orange vegetables their color and is converted by the body into Vitamin A."
+      },
+      {
+        "term": "Rhodopsin",
+        "definition": "A biological pigment in the photoreceptor cells of the retina that enables vision in low light."
+      }
+    ],
+    "whyThisMatters": "Vitamin A is essential for preventing eye disease worldwide, but nutrition facts are often mixed with historical propaganda.",
+    "keyTakeaways": [
+      "Carrots supply Vitamin A, which supports normal low-light retinal function.",
+      "Eating extra carrots beyond your daily need will not grant super night vision.",
+      "The night-vision carrot myth originated as WWII military propaganda to hide radar tech."
+    ],
+    "sources": [
+      {
+        "label": "Smithsonian Magazine - World War II Carrot Myth",
+        "url": "https://www.smithsonianmag.com"
+      },
+      {
+        "label": "CDC - Vitamin A and Eye Health",
+        "url": "https://www.cdc.gov"
+      }
+    ],
+    "coverImageUrl": "/doctor-carrot.jpg",
+    "coverImageAlt": "Illustration of carrots and night vision retinal science",
+    "seoTitle": "Can Eating Carrots Give You Superhero Night Vision? | Lexies Scrubs",
+    "metaDescription": "You've been told eating carrots helps you see in the pitch dark. Discover the WWII propaganda story behind the myth.",
+    "excerpt": "You've been told eating carrots helps you see in the pitch dark. Discover the WWII propaganda story behind the myth.",
+    "publishedAt": "2026-06-14T12:00:00.000Z",
+    "updatedAt": "2026-06-14T12:00:00.000Z"
+  }
+]

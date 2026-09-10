@@ -33,8 +33,8 @@ export default async function AdminPostsPage() {
             </tr>
           </thead>
           <tbody>
-            {items.map((post: any) => (
-              <tr key={String(post._id)} className="border-t border-slate-100">
+            {items.map((post: { _id?: string; id?: string; title: string; publishedAt?: string | Date }) => (
+              <tr key={String(post._id || post.id)} className="border-t border-slate-100">
                 <td className="px-4 py-3 text-sm text-slate-900">{post.title}</td>
                 <td className="px-4 py-3 text-sm text-slate-600">
                   {post.publishedAt ? new Date(post.publishedAt).toLocaleDateString() : '-'}

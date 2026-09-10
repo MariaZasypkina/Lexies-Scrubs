@@ -15,7 +15,7 @@ A fullstack Next.js blog for science facts with admin publishing capabilities.
 - **Framework**: Next.js with App Router
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
-- **Database**: MongoDB
+- **Data Storage**: Local JSON
 - **Authentication**: JWT with secure cookies
 - **Deployment**: Vercel
 
@@ -24,7 +24,6 @@ A fullstack Next.js blog for science facts with admin publishing capabilities.
 ### Prerequisites
 
 - Node.js 18+
-- MongoDB Atlas account or local MongoDB instance
 
 ### Installation
 
@@ -38,7 +37,7 @@ npm install
 cp .env.example .env.local
 ```
 
-Fill in your MongoDB URI, `AUTH_SECRET`, and `ADMIN_PASSWORD_HASH`.
+Fill in your `AUTH_SECRET` and `ADMIN_PASSWORD_HASH`.
 
 3. Start the development server:
 ```bash
@@ -60,8 +59,8 @@ app/
   sources/
   myth-or-truth/
 src/
+  content/             # JSON data files
   lib/
-    db.ts              # MongoDB connection
     auth.ts            # Authentication
     posts.ts           # Post operations
     seo.ts             # SEO utilities
@@ -92,7 +91,6 @@ All fields with * are required.
 
 ## Environment Variables
 
-- `MONGODB_URI` - MongoDB connection string
 - `AUTH_SECRET` - JWT signing secret
 - `ADMIN_PASSWORD_HASH` - Bcrypt hash for admin login password
 - `NEXT_PUBLIC_SITE_URL` - Site URL for SEO and sharing
@@ -109,7 +107,6 @@ All fields with * are required.
 ## Important Notes
 
 - **Admin pages use `/admin` route** - No public facing announcement
-- **MongoDB setup required** - Configure connection string before launch
 - **Password protection** - Change default admin password immediately
 - **Educational disclaimer** included on all pages
 - **No real medical advice** - Content is educational only
