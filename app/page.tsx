@@ -75,7 +75,7 @@ export default function HomePage() {
               <p className="la-subtitle mb-8 max-w-2xl text-lg leading-relaxed">
                 {latestPost
                   ? latestPost.lead
-                  : "Lexi&apos;s Anatomy is a curious, teen-friendly biology and medicine blog where surprising facts turn into clear explanations. One question, one investigation, one reason it matters in real life and real medicine."}
+                  : "Lexies Scrubs is a curious, teen-friendly biology and medicine blog where surprising facts turn into clear explanations. One question, one investigation, one reason it matters in real life and real medicine."}
               </p>
               <hr className="la-divider mb-7" />
               <div className="flex flex-col gap-4 md:flex-row">
@@ -158,7 +158,7 @@ export default function HomePage() {
         <div className="text-center mb-12">
           <h2 className="la-title la-section-title mb-4 text-3xl font-bold">How each fact unfolds</h2>
           <p className="la-subtitle text-lg">
-            Every Lexi&apos;s Anatomy post follows a simple pattern so science feels easier to explore and easier to remember.
+            Every Lexies Scrubs post follows a simple pattern so science feels easier to explore and easier to remember.
           </p>
         </div>
 
@@ -232,13 +232,13 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="la-title la-section-title mb-4 text-3xl font-bold">About the project</h2>
           <p className="mb-8 text-lg text-[#536079]">
-            Lexi&apos;s Anatomy is an English-language biology and medicine blog created by Lexi, a student who wants to become a doctor. The goal is simple: find surprising facts, explain them clearly, and show why they matter beyond the classroom.
+            Lexies Scrubs Project is an English-language biology and medicine blog created by Lexi, a student who wants to become a doctor. The goal is simple: find surprising facts, explain them clearly, and show why they matter beyond the classroom.
           </p>
           <Link
             href="/about"
             className="la-btn-secondary px-6 py-2.5"
           >
-            Read About Lexi&apos;s Anatomy
+            Read About Lexies Scrubs
           </Link>
         </div>
       </div>
@@ -248,7 +248,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <h3 className="la-title mb-4 text-xl font-bold text-[#f5f8fb]">Lexi&apos;s Anatomy</h3>
+              <h3 className="la-title mb-4 text-xl font-bold text-[#f5f8fb]">Lexies Scrubs Project</h3>
               <ul className="space-y-2 text-sm">
                 <li>
                   <Link href="/" className="transition-colors hover:text-white">
@@ -280,14 +280,14 @@ export default function HomePage() {
               <h3 className="mb-4 font-bold text-white">Legal</h3>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <p>Lexi&apos;s Anatomy is for educational purposes only and does not provide medical advice.</p>
+                  <p>Lexies Scrubs is for educational purposes only and does not provide medical advice.</p>
                 </li>
               </ul>
             </div>
           </div>
 
           <div className="border-t border-[#445b72] pt-8 text-sm">
-            <p>&copy; 2026 Lexi&apos;s Anatomy. All rights reserved.</p>
+            <p>2026 Lexies Scrubs. All rights reserved.</p>
           </div>
         </div>
       </footer>
