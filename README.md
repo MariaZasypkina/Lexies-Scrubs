@@ -1,5 +1,7 @@
 # Lexies Scrubs — README
 
+
+
 A fullstack Next.js blog for science facts with admin publishing capabilities.
 
 ## Features
