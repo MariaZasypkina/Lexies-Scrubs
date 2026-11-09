@@ -1,5 +1,101 @@
 [
   {
+    "_id": "post-1794251600424-snnyjh",
+    "title": "Why Do We Yawn (and Why Is It Contagious?)",
+    "slug": "why-do-we-yawn-and-why-is-it-contagious",
+    "lead": "Reading this might make you yawn. Sorry in advance, it is kind of the point.",
+    "content": "I always thought yawning meant my brain needed more oxygen. Turns out scientists tested that years ago, and breathing pure oxygen did not change how often people yawned at all.\n\nThe theory with the best evidence now is much cooler, literally. A big yawn stretches your jaw and pulls in cool air, which may help lower your brain temperature a little and wake you up.\n\nAnd the contagious part? Nobody fully knows why yet. Even babies in the womb have been seen yawning right after their moms do.\n\nDid this post make you yawn? Be honest.",
+    "sources": [
+      {
+        "label": "Gallup & Eldakar, Frontiers for Young Minds 2017 - Yawns Are Cool",
+        "url": "https://kids.frontiersin.org/articles/10.3389/frym.2017.00052"
+      },
+      {
+        "label": "Smithsonian Magazine - Fetuses Can 'Catch' Yawns From Their Mothers While Still in the Womb",
+        "url": "https://www.smithsonianmag.com/smart-news/fetuses-can-catch-yawns-from-their-mothers-while-still-in-the-womb-new-research-suggests-180988735/"
+      },
+      {
+        "label": "D'Adamo et al., Current Biology 2026 - Prenatal behavioral contagion through maternal yawning (PubMed)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42092355/"
+      },
+      {
+        "label": "Cover photo: Slyronit / Wikimedia Commons, CC BY-SA 4.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Beagle_yawning_2.jpg"
+      }
+    ],
+    "coverImageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Beagle_yawning_2.jpg",
+    "coverImageAlt": "A beagle yawning",
+    "seoTitle": "Why Do We Yawn (and Why Is It Contagious?) | Lexies Scrubs",
+    "metaDescription": "Reading this might make you yawn. Sorry in advance, it is kind of the point.",
+    "excerpt": "Reading this might make you yawn. Sorry in advance, it is kind of the point.",
+    "publishedAt": "2026-11-07T00:00:00.000Z",
+    "updatedAt": "2026-11-07T00:00:00.000Z",
+    "factBadge": {
+      "type": "myth",
+      "statement": "Yawning is not your brain asking for more oxygen. In a lab test, breathing pure oxygen did not change how often people yawned."
+    }
+  },
+  {
+    "_id": "post-1794251600424-s9kg3f",
+    "title": "What Actually Happens When You Crack Your Knuckles?",
+    "slug": "what-actually-happens-when-you-crack-your-knuckles",
+    "lead": "I crack my knuckles a lot, and grown-ups warn me it will give me arthritis. So I looked it up, and the science says something else.",
+    "content": "Inside each knuckle is slippery fluid with gases dissolved in it. When I pull a finger, the joint stretches, the pressure drops, and a tiny gas bubble pops into being. That is the sound.\n\nScientists filmed it happening inside an MRI scanner. And one doctor cracked only his left hand's knuckles for 50 years. His hands turned out the same.\n\nThat is why you cannot crack the same knuckle twice. The gas needs about 20 minutes to build back up.\n\nAre you a knuckle cracker, or does the sound drive you crazy?",
+    "sources": [
+      {
+        "label": "Kawchuk et al., PLOS ONE 2015 - Real-Time Visualization of Joint Cavitation",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0119470"
+      },
+      {
+        "label": "Harvard Health - Knuckle cracking: Annoying and harmful, or just annoying?",
+        "url": "https://www.health.harvard.edu/blog/knuckle-cracking-annoying-and-harmful-or-just-annoying-2018051413797?utm_source=delivra&utm_medium=email&utm_campaign=BF20180514-Hands&utm_id=914025&dlv-ga-memberid=11355531&mid=11355531&ml=914025"
+      },
+      {
+        "label": "Cover image: OpenStax College / Wikimedia Commons, CC BY 3.0",
+        "url": "https://commons.wikimedia.org/wiki/File:907_Synovial_Joints.jpg"
+      }
+    ],
+    "coverImageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8b/907_Synovial_Joints.jpg",
+    "coverImageAlt": "Diagram of a synovial joint",
+    "seoTitle": "What Actually Happens When You Crack Your Knuckles? | Lexies Scrubs",
+    "metaDescription": "I crack my knuckles a lot, and grown-ups warn me it will give me arthritis. So I looked it up, and the science says something else.",
+    "excerpt": "I crack my knuckles a lot, and grown-ups warn me it will give me arthritis. So I looked it up, and the science says something else.",
+    "publishedAt": "2026-11-05T00:00:00.000Z",
+    "updatedAt": "2026-11-05T00:00:00.000Z",
+    "factBadge": {
+      "type": "myth",
+      "statement": "Cracking your knuckles does not cause arthritis. One doctor cracked only his left hand's knuckles for 50 years, and his hands turned out the same."
+    }
+  },
+  {
+    "_id": "post-1794251600424-dqwpx0",
+    "title": "Why Does Your Stomach Growl When You're Hungry?",
+    "slug": "why-does-your-stomach-growl-when-youre-hungry",
+    "lead": "Ever had your stomach announce itself in the middle of a quiet classroom? Same. Here's the thing: that growl has a medical name. It's called borborygmi, and the word is literally an imitation of the sound.",
+    "content": "The noise is your digestive system doing its job. Your intestines squeeze in waves to move food, liquid and gas along. Doctors call that peristalsis. When your stomach is empty, there is no food to muffle the sound, so the gas and sloshing echo much louder.\n\nAnd fun fact: most of the sound actually comes from your intestines, not your stomach.\n\nWhat is the loudest your stomach has ever growled?",
+    "sources": [
+      {
+        "label": "Harvard Health - Stomach Growling and Other Digestive Noise",
+        "url": "https://www.health.harvard.edu/digestive-health/stomach-growling-and-other-digestive-noise"
+      },
+      {
+        "label": "Healthline - Stomach Growling: Causes, Symptoms, Treatments, and More",
+        "url": "https://www.healthline.com/health/abdominal-sounds"
+      },
+      {
+        "label": "Cover image: Blausen.com staff / Wikimedia Commons, CC BY 3.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Blausen_0316_DigestiveSystem.png"
+      }
+    ],
+    "coverImageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/14/Blausen_0316_DigestiveSystem.png",
+    "coverImageAlt": "Diagram of the human digestive system",
+    "seoTitle": "Why Does Your Stomach Growl When You're Hungry? | Lexies Scrubs",
+    "metaDescription": "Ever had your stomach announce itself in the middle of a quiet classroom? Same. Here's the thing: that growl has a medical name. It's called borborygmi, and the...",
+    "excerpt": "Ever had your stomach announce itself in the middle of a quiet classroom? Same. Here's the thing: that growl has a medical name. It's called borborygmi, and the...",
+    "publishedAt": "2026-11-03T00:00:00.000Z",
+    "updatedAt": "2026-11-03T00:00:00.000Z"
+  },
+  {
     "_id": "66708f51a2b1000100000001",
     "title": "Does Your Heart Sit On the Left Side Of Your Chest?",
     "slug": "why-doesnt-your-heart-sit-exactly-in-the-center",
