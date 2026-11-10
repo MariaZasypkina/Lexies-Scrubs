@@ -1,5 +1,37 @@
 [
   {
+    "_id": "post-1794347345028-i9vp27",
+    "title": "What Is a 'Funny Bone' Really?",
+    "slug": "what-is-a-funny-bone-really",
+    "lead": "Have you ever banged your elbow on a doorframe and felt a buzz shoot down to your little finger? That is your funny bone, and it is not a bone at all.",
+    "content": "It is a nerve, the ulnar nerve. It runs from your neck down your arm, and at your elbow it passes through a narrow tunnel with almost no protection, just skin and fat. Bump it, and you squash the nerve against the bone, so the tingle zips down to your ring and pinky fingers.\n\nThe name is probably a pun: the bone beside it is the humerus, which sounds like humorous. It usually fades in a minute or two.\n\nHas it ever made you yelp out loud?",
+    "sources": [
+      {
+        "label": "Cleveland Clinic - Ulnar Nerve (Funny Bone)",
+        "url": "https://my.clevelandclinic.org/health/body/21664-ulnar-nerve"
+      },
+      {
+        "label": "Wikipedia - Ulnar nerve",
+        "url": "https://en.wikipedia.org/wiki/Ulnar_nerve"
+      },
+      {
+        "label": "Cover image: Henry Vandyke Carter / Wikimedia Commons (public domain)",
+        "url": "https://commons.wikimedia.org/wiki/File:Nerves_of_the_left_upper_extremity.gif"
+      }
+    ],
+    "coverImageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Nerves_of_the_left_upper_extremity.gif",
+    "coverImageAlt": "Diagram of the nerves of the left upper extremity, showing the ulnar nerve",
+    "seoTitle": "What Is a 'Funny Bone' Really? | Lexies Scrubs",
+    "metaDescription": "Have you ever banged your elbow on a doorframe and felt a buzz shoot down to your little finger? That is your funny bone, and it is not a bone at all.",
+    "excerpt": "Have you ever banged your elbow on a doorframe and felt a buzz shoot down to your little finger? That is your funny bone, and it is not a bone at all.",
+    "publishedAt": "2026-11-10T00:00:00.000Z",
+    "updatedAt": "2026-11-10T00:00:00.000Z",
+    "factBadge": {
+      "type": "myth",
+      "statement": "Your funny bone is not a bone at all. It is the ulnar nerve, and bumping it squashes the nerve against the bone."
+    }
+  },
+  {
     "_id": "post-1794251600424-snnyjh",
     "title": "Why Do We Yawn (and Why Is It Contagious?)",
     "slug": "why-do-we-yawn-and-why-is-it-contagious",
