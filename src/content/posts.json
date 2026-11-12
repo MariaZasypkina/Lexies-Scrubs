@@ -1,5 +1,37 @@
 [
   {
+    "_id": "post-1794506123955-jbun2x",
+    "title": "Are You Left-Handed?",
+    "slug": "are-you-left-handed",
+    "lead": "Are you left-handed? About one in ten people is.",
+    "content": "Your brain is cross-wired: the left side controls your right hand, and the other way round. Language usually lives on the left too. In about 95 out of 100 right-handed people it does, but for lefties it is messier. Around 70 out of 100 keep it on the left. The rest split it or move it to the right.\n\nSo no, being left-handed does not make you more creative, and being right-handed does not make you more logical. That left-brain, right-brain personality idea is a myth. Brain scans of more than a thousand people found no one with a dominant side.\n\nAre you a lefty, a righty, or a bit of both?",
+    "sources": [
+      {
+        "label": "Nielsen et al., PLOS ONE 2013 - An Evaluation of the Left-Brain vs. Right-Brain Hypothesis",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0071275"
+      },
+      {
+        "label": "Neuroscience for Kids, University of Washington - Left-Handedness",
+        "url": "https://faculty.washington.edu/chudler/handed.html"
+      },
+      {
+        "label": "Cover photo: Pavel Danilyuk / Pexels",
+        "url": "https://www.pexels.com/photo/person-writing-on-a-notebook-8423081/"
+      }
+    ],
+    "coverImageUrl": "https://images.pexels.com/photos/8423081/pexels-photo-8423081.jpeg?auto=compress&w=1260&h=750&dpr=1",
+    "coverImageAlt": "A child writing left-handed in a notebook at a school desk",
+    "seoTitle": "Are You Left-Handed? | Lexies Scrubs",
+    "metaDescription": "Are you left-handed? About one in ten people is.",
+    "excerpt": "Are you left-handed? About one in ten people is.",
+    "publishedAt": "2026-11-12T00:00:00.000Z",
+    "updatedAt": "2026-11-12T00:00:00.000Z",
+    "factBadge": {
+      "type": "myth",
+      "statement": "Left-handed people are not more creative, and right-handed people are not more logical. Brain scans of more than a thousand people found no one with a dominant side."
+    }
+  },
+  {
     "_id": "post-1794347345028-i9vp27",
     "title": "What Is a 'Funny Bone' Really?",
     "slug": "what-is-a-funny-bone-really",
