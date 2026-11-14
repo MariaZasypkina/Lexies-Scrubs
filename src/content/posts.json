@@ -1,5 +1,37 @@
 [
   {
+    "_id": "post-1794676754993-88i40i",
+    "title": "How Fast Do Your Nails and Hair Actually Grow?",
+    "slug": "how-fast-do-your-nails-and-hair-actually-grow",
+    "lead": "Your nails are racing each other, and your middle finger is winning.",
+    "content": "My fingernails grow about 3.5 mm a month, my toenails less than half that fast. The middle fingernail is the front-runner, the pinky brings up the rear. One doctor, William Bean, marked his thumbnail every month for 35 years and watched it slow down as he aged.\n\nMy hair runs on a different clock. Each of my roughly 100,000 follicles grows for 2 to 7 years, then rests and sheds. Losing 50 to 100 hairs a day is normal.\n\nAnd no, hair and nails do not grow after death. The skin just dries and pulls back, so they only look longer.\n\nEver tried measuring how fast yours grow?",
+    "sources": [
+      {
+        "label": "Yaemsiri et al., J Eur Acad Dermatol Venereol 2010 - Nail growth (PubMed)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/19744178/"
+      },
+      {
+        "label": "Vreeman & Carroll, BMJ 2007 - Medical myths",
+        "url": "https://www.bmj.com/content/335/7633/1288"
+      },
+      {
+        "label": "Cover photo: Zara S.m. / Pexels",
+        "url": "https://www.pexels.com/photo/free-photo-of-two-hands-with-painted-nails-15149202/"
+      }
+    ],
+    "coverImageUrl": "https://images.pexels.com/photos/15149202/pexels-photo-15149202.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "coverImageAlt": "Two young women's hands with painted nails on a wooden table",
+    "seoTitle": "How Fast Do Your Nails and Hair Actually Grow? | Lexies Scrubs",
+    "metaDescription": "Your nails are racing each other, and your middle finger is winning.",
+    "excerpt": "Your nails are racing each other, and your middle finger is winning.",
+    "publishedAt": "2026-11-14T00:00:00.000Z",
+    "updatedAt": "2026-11-14T00:00:00.000Z",
+    "factBadge": {
+      "type": "myth",
+      "statement": "Hair and nails do not grow after death. The skin just dries and pulls back, so they only look longer."
+    }
+  },
+  {
     "_id": "post-1794506123955-jbun2x",
     "title": "Are You Left-Handed?",
     "slug": "are-you-left-handed",
