@@ -1,5 +1,33 @@
 [
   {
+    "_id": "post-1794936064200-rxjqjw",
+    "title": "Why Do We Get Hiccups?",
+    "slug": "why-do-we-get-hiccups",
+    "lead": "Have you ever had the hiccups at the worst possible moment? Mine always show up right in the middle of class.",
+    "content": "A hiccup is my diaphragm throwing a little tantrum. That big muscle under my lungs suddenly squeezes, and my vocal cords snap shut a split second later. That snap is the 'hic' sound.\n\nEating too fast, fizzy drinks, or a sudden chill can set it off. Most hiccups give up within a few minutes on their own.\n\nBut one man, Charles Osborne, hiccuped for 68 years straight, from 1922 to 1990. That is around 430 million hiccups, a Guinness World Record nobody wants.\n\nWhat is your go-to trick for stopping them?",
+    "sources": [
+      {
+        "label": "Cleveland Clinic - Hiccups",
+        "url": "https://my.clevelandclinic.org/health/diseases/17672-hiccups"
+      },
+      {
+        "label": "Guinness World Records - Longest attack of hiccups",
+        "url": "https://www.guinnessworldrecords.com/world-records/longest-attack-of-hiccups"
+      },
+      {
+        "label": "Cover photo: Andrea Piacquadio / Pexels",
+        "url": "https://www.pexels.com/photo/woman-drinking-water-3794165/"
+      }
+    ],
+    "coverImageUrl": "https://images.pexels.com/photos/3794165/pexels-photo-3794165.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "coverImageAlt": "A young woman drinking a glass of water",
+    "seoTitle": "Why Do We Get Hiccups? | Lexies Scrubs",
+    "metaDescription": "Have you ever had the hiccups at the worst possible moment? Mine always show up right in the middle of class.",
+    "excerpt": "Have you ever had the hiccups at the worst possible moment? Mine always show up right in the middle of class.",
+    "publishedAt": "2026-11-17T00:00:00.000Z",
+    "updatedAt": "2026-11-17T00:00:00.000Z"
+  },
+  {
     "_id": "post-1794676754993-88i40i",
     "title": "How Fast Do Your Nails and Hair Actually Grow?",
     "slug": "how-fast-do-your-nails-and-hair-actually-grow",
