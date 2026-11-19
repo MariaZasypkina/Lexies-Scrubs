@@ -1,5 +1,33 @@
 [
   {
+    "_id": "post-1795117034379-ph9f0f",
+    "title": "Why Do Your Nostrils Take Turns Breathing?",
+    "slug": "why-do-your-nostrils-take-turns-breathing",
+    "lead": "Close one nostril and breathe in. Now switch sides. One side always feels clearer than the other, right?",
+    "content": "That is the nasal cycle. The lining inside one nostril swells with blood for a while, so less air gets through, while the other side opens wide and does most of the breathing. Every couple of hours they swap, so neither side dries out.\n\nHere is my favorite part: each nostril is better at catching different smells. The fast-air side picks up some scents, the slow-air side picks up others, and together they give my brain a fuller picture of every smell.\n\nHave you ever noticed one nostril doing all the work?",
+    "sources": [
+      {
+        "label": "Kahana-Zweig et al., PLOS ONE 2016 - Measuring and Characterizing the Human Nasal Cycle",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0162918"
+      },
+      {
+        "label": "Sobel et al., Nature 1999 - Odorant-induced and sniff-induced activation in the cerebellum",
+        "url": "https://www.nature.com/articles/46944"
+      },
+      {
+        "label": "Cover photo: Nam Phong Bùi / Pexels",
+        "url": "https://www.pexels.com/photo/2172403/"
+      }
+    ],
+    "coverImageUrl": "https://images.pexels.com/photos/2172403/pexels-photo-2172403.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "coverImageAlt": "A young woman smelling yellow flowers in a sunny garden",
+    "seoTitle": "Why Do Your Nostrils Take Turns Breathing? | Lexies Scrubs",
+    "metaDescription": "Close one nostril and breathe in. Now switch sides. One side always feels clearer than the other, right?",
+    "excerpt": "Close one nostril and breathe in. Now switch sides. One side always feels clearer than the other, right?",
+    "publishedAt": "2026-11-19T00:00:00.000Z",
+    "updatedAt": "2026-11-19T00:00:00.000Z"
+  },
+  {
     "_id": "post-1794936064200-rxjqjw",
     "title": "Why Do We Get Hiccups?",
     "slug": "why-do-we-get-hiccups",
