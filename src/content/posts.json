@@ -1,5 +1,33 @@
 [
   {
+    "_id": "post-1795541825998-s72yoh",
+    "title": "Why Do We Blush?",
+    "slug": "why-do-we-blush",
+    "lead": "Have you ever watched someone's face go bright red at the worst possible moment? One of my friends turns the color of a tomato whenever she gets upset, and she hates it.",
+    "content": "Here is what is happening. Embarrassment trips the fight-or-flight system, and adrenaline tells the tiny blood vessels in the cheeks to widen. More blood rushes close to the surface, and the face turns red. You cannot stop it, because that part of the nervous system does not take orders.\n\nCharles Darwin called blushing \"the most peculiar and most human of all expressions.\" Scientists think it is actually useful: a blush is an honest signal, a silent \"I know, I messed up,\" and people who blush after a blunder tend to be forgiven faster.\n\nWhat is the last thing that made you blush?",
+    "sources": [
+      {
+        "label": "Reader's Digest - Why Do We Blush?",
+        "url": "https://www.rd.com/article/why-do-people-blush/"
+      },
+      {
+        "label": "Scientific American - Why We Blush: The Social Purpose of Showing Embarrassment",
+        "url": "https://www.scientificamerican.com/blog/bering-in-mind/why-we-blush-the-social-purpose-of-showing-embarrassment/"
+      },
+      {
+        "label": "Cover photo: Sound On / Pexels",
+        "url": "https://www.pexels.com/photo/3760819/"
+      }
+    ],
+    "coverImageUrl": "https://images.pexels.com/photos/3760819/pexels-photo-3760819.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "coverImageAlt": "A young woman in a red sweater covering her face with her hands",
+    "seoTitle": "Why Do We Blush? | Lexies Scrubs",
+    "metaDescription": "Have you ever watched someone's face go bright red at the worst possible moment? One of my friends turns the color of a tomato whenever she gets upset, and she...",
+    "excerpt": "Have you ever watched someone's face go bright red at the worst possible moment? One of my friends turns the color of a tomato whenever she gets upset, and she...",
+    "publishedAt": "2026-11-24T00:00:00.000Z",
+    "updatedAt": "2026-11-24T00:00:00.000Z"
+  },
+  {
     "_id": "post-1795285876673-90zt2l",
     "title": "Why Do We Get Pins and Needles When a Foot Falls Asleep?",
     "slug": "why-do-we-get-pins-and-needles-when-a-foot-falls-asleep",
