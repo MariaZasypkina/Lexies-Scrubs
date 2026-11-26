@@ -1,5 +1,33 @@
 [
   {
+    "_id": "post-1795711435212-fxw3rc",
+    "title": "Happy Thanksgiving from Lexies Scrubs!",
+    "slug": "happy-thanksgiving-2026",
+    "lead": "Happy Thanksgiving! Today I am thankful for my family, my friends, and every one of you who reads my little science facts.",
+    "content": "Here is a fun one for the dinner table: my stomach is about the size of my fist when it is empty, but it can stretch to hold about a liter of food. So yes, there is real science behind going back for seconds.\n\nWhat are you most thankful for this year?",
+    "sources": [
+      {
+        "label": "Healthline - How Big Is Your Stomach: Size and Volume",
+        "url": "https://www.healthline.com/health/how-big-is-your-stomach"
+      },
+      {
+        "label": "Institute of Human Anatomy - How much Food can the human Stomach hold?",
+        "url": "https://www.instituteofhumananatomy.com/blog/stomach"
+      },
+      {
+        "label": "Cover photo: Monstera Production / Pexels",
+        "url": "https://www.pexels.com/photo/wooden-table-served-with-tasty-dishes-on-thanksgiving-day-5876741/"
+      }
+    ],
+    "coverImageUrl": "https://images.pexels.com/photos/5876741/pexels-photo-5876741.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    "coverImageAlt": "A beautifully set Thanksgiving dinner table with a roasted turkey",
+    "seoTitle": "Happy Thanksgiving from Lexies Scrubs! | Lexies Scrubs",
+    "metaDescription": "Happy Thanksgiving! Today I am thankful for my family, my friends, and every one of you who reads my little science facts.",
+    "excerpt": "Happy Thanksgiving! Today I am thankful for my family, my friends, and every one of you who reads my little science facts.",
+    "publishedAt": "2026-11-26T00:00:00.000Z",
+    "updatedAt": "2026-11-26T00:00:00.000Z"
+  },
+  {
     "_id": "post-1795541825998-s72yoh",
     "title": "Why Do We Blush?",
     "slug": "why-do-we-blush",
